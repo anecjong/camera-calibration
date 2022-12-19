@@ -3,6 +3,7 @@ import cv2 as cv
 import glob
 import os
 import json
+import sys
 
 
 class Chessboard():
@@ -17,8 +18,18 @@ class Chessboard():
             (self.CHECKER_BOARD_WIDTH*self.CHECKER_BOARD_HEIGHT, 3), np.float32)
         self.check_pt[:, :2] = np.mgrid[0:self.CHECKER_BOARD_WIDTH,
                                         0:self.CHECKER_BOARD_HEIGHT].T.reshape(-1, 2)*self.SQUARE_SIZE
-        self.images_path = glob.glob(os.path.join(
+        jpg_path = glob.glob(os.path.join(
             os.path.dirname(os.path.realpath(__file__)), "..", "imgs", "*.jpg"))
+        JPG_path = glob.glob(os.path.join(
+            os.path.dirname(os.path.realpath(__file__)), "..", "imgs", "*.JPG"))
+        png_path = glob.glob(os.path.join(
+            os.path.dirname(os.path.realpath(__file__)), "..", "imgs", "*.png"))
+        PNG_path = glob.glob(os.path.join(
+            os.path.dirname(os.path.realpath(__file__)), "..", "imgs", "*.PNG"))
+
+        self.images_path = jpg_path + JPG_path + png_path + PNG_path
+
+        print(f"Image count: {len(self.images_path)}")
 
     def calibration(self, vis: bool = False, save_image: bool = True, alpha: float = 0.95) -> None:
         obj_pts = []
