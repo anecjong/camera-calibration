@@ -9,8 +9,8 @@ class Chessboard():
     def __init__(self, ):
         self.CHECKER_BOARD_WIDTH = 9
         self.CHECKER_BOARD_HEIGHT = 6
-        self.SQUARE_SIZE = 3 * 0.001
-        # 0.003 m
+        self.SQUARE_SIZE = 3 * 0.01
+        # 0.03 m
         self.criteria = (cv.TERM_CRITERIA_EPS
                          + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
         self.check_pt = np.zeros(
